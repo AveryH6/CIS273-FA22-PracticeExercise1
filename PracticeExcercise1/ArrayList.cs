@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection;
+
 namespace PracticeExercise1
 {
 	public class ArrayList : IList
@@ -119,6 +121,8 @@ namespace PracticeExercise1
                 Resize();
             }
 
+            
+
             ShiftRight(array[existingValue] );
             //ShiftRight(array[newValue]);
 
@@ -202,8 +206,7 @@ namespace PracticeExercise1
                 Resize();
             }
 
-            ShiftLeft(Length - 1);
-            array[value] = value;
+            ShiftLeft(value);
             length--;
 
         }
@@ -220,13 +223,12 @@ namespace PracticeExercise1
                 Resize();
             }
 
-            // 1 - shift right starting at index
+            if (index > Length - 1 || index < 0)
+            {
+                throw new IndexOutOfRangeException();
+            }
+
             ShiftLeft(index);
-
-            // 2 - write new value at index
-            array[index] = index;
-
-            // 3 - increase length
             length--;
         }
 
