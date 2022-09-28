@@ -36,7 +36,11 @@ namespace PracticeExercise1
         /// <summary>
         /// Returns last element in list, null if empty.
         /// </summary>
-        public int? Last { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int? Last
+        {
+            get => IsEmpty ? null : array[Length - 1];
+
+        }
 
         /// <summary>
         /// Returns true if list is has no elements; false otherwise.
@@ -90,7 +94,15 @@ namespace PracticeExercise1
         /// <returns>Index of first element with value; -1 if element is not found</returns>
         public int FirstIndexOf(int value)
         {
-            throw new NotImplementedException();
+            
+            if (value == array[value])
+            {
+                return value;
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         // TODO
@@ -102,7 +114,19 @@ namespace PracticeExercise1
         /// <param name="existingValue"></param>
         public void InsertAfter(int newValue, int existingValue)
         {
-            throw new NotImplementedException();
+            if (Length == array.Length)
+            {
+                Resize();
+            }
+
+            ShiftRight(array[existingValue] );
+            //ShiftRight(array[newValue]);
+
+            array[existingValue] = newValue;
+            length++;
+            
+
+
         }
 
         // TODO
@@ -113,7 +137,21 @@ namespace PracticeExercise1
         /// <param name="index"></param>
         public void InsertAt(int value, int index)
         {
-            throw new NotImplementedException();
+            // 0 - check if arraylist is full
+            if (Length == array.Length)
+            {
+                Resize();
+            }
+
+            // 1 - shift right starting at index
+            ShiftRight(index);
+
+            // 2 - write new value at index
+            array[index] = value;
+
+            // 3 - increase length
+            length++;
+
         }
 
         /// <summary>
@@ -159,7 +197,15 @@ namespace PracticeExercise1
         /// <param name="value">value of item to be removed</param>
         public void Remove(int value)
         {
-            throw new NotImplementedException();
+            if (Length == array.Length)
+            {
+                Resize();
+            }
+
+            ShiftLeft(Length - 1);
+            array[value] = value;
+            length--;
+
         }
 
         // TODO
@@ -169,7 +215,18 @@ namespace PracticeExercise1
         /// <param name="index"></param>
         public void RemoveAt(int index)
         {
+            if (Length == array.Length)
+            {
+                Resize();
+            }
+
+            // 1 - shift right starting at index
             ShiftLeft(index);
+
+            // 2 - write new value at index
+            array[index] = index;
+
+            // 3 - increase length
             length--;
         }
 
